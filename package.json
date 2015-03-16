@@ -1,0 +1,15 @@
+{
+  "name": "camera-usb",
+  "version": "1.0.0",
+  "description": "Take still frames or mjpeg video from a webcam.",
+  "repository": "tcr/camera-usb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tim Cameron Ryan <tim@technical.io>",
+  "license": "MIT",
+  "devDependencies": {
+    "imagesize": "^1.0.0"
+  }
+}
