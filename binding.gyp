@@ -2,12 +2,17 @@
   "targets": [
     {
       "target_name": "capture",
-      "type": "executable",
+      "include_dirs" : [
+        "<!(node -e \"require('nan')\")"
+      ],
       "conditions": [
         [
           "OS=='mac'",
             {
-              "sources": [ "src/capture.m" ],
+              "sources": [
+                "src/capture_module.cc",
+                "src/capture.m"
+              ],
               'xcode_settings': {
                 'OTHER_CFLAGS': [
                   '-fobjc-arc',

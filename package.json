@@ -11,5 +11,9 @@
   "license": "MIT",
   "devDependencies": {
     "imagesize": "^1.0.0"
+  },
+  "dependencies": {
+    "bindings": "^1.2.1",
+    "nan": "^1.7.0"
   }
 }

@@ -8,4 +8,5 @@ imagesize(cameralib.capture('jpeg'), function (err, res) {
   assert.ok(res.format == 'jpeg');
   assert.ok(res.width > 0);
   assert.ok(res.height > 0);
+  console.error('passed');
 });

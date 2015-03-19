@@ -45,6 +45,13 @@
   NSLog(@"capture released");
 }
 
+typedef struct {
+  char* data;
+  size_t len;
+} buf_t;
+
+buf_t static_frame;
+
 - (void) save
 {
   @synchronized (self) {
@@ -53,16 +60,21 @@
     NSBitmapImageRep* bitmapRep = 
       [[NSBitmapImageRep alloc] initWithCIImage: ciImage];
     
-    NSFileHandle *stdout = [NSFileHandle fileHandleWithStandardOutput];
+    // NSFileHandle *stdout = [NSFileHandle fileHandleWithStandardOutput];
     NSData* jpgData = 
       [bitmapRep representationUsingType:NSJPEGFileType properties: nil];
-    [stdout writeData: jpgData];
+    // [stdout writeData: jpgData];
+
+    // Sorry for the C
+    static_frame.len = [jpgData length];
+    static_frame.data = malloc(static_frame.len);
+    memcpy(static_frame.data, [jpgData bytes], static_frame.len);
+
     // [jpgData writeToFile: stdout atomically: NO];
     //NSData* pngData = 
     //  [bitmapRep representationUsingType:NSPNGFileType properties: nil];
     //[pngData writeToFile: @"result.png" atomically: NO];
   }
-  NSLog(@"Saved");
 }
 
 - (void) captureOutput: (AVCaptureOutput*) output
@@ -81,7 +93,7 @@
     NSLog(@"Captured");
   }
   CVBufferRelease(prev);
-  if (count == 6) {
+  if (count == 1) {
     // after skipped 5 frames
     [self save];
     [self.session stopRunning];
@@ -114,7 +126,7 @@ int quit(NSError * error)
   return 1;
 }
 
-int main( int argc, const char* argv[])
+char* camera_capture(size_t* size)
 {
   NSError* error = nil;
   Capture* capture = [[Capture alloc] init];
@@ -145,5 +157,7 @@ int main( int argc, const char* argv[])
   CFRunLoopRun();
   
   NSLog(@"Stopped");
-  return 0;
+
+  *size = static_frame.len;
+  return static_frame.data;
 }

@@ -1,12 +1,12 @@
 var fs = require('fs');
-var spawn = require('child_process').spawn;
-var path = require('path');
-
-var exe = path.join(__dirname, 'build', 'Release', 'capture');
+var bindings = require('bindings')('capture.node')
 
 function capture () {
-  var camera = spawn(exe, [], {});
-  return camera.stdout;
+	var out = new (require('stream').Readable);
+	var buf = bindings.capture();
+	out.push(buf);
+	out.push(null);
+	return out;
 }
 
 exports.capture = capture;
