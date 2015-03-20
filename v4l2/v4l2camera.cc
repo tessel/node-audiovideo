@@ -313,10 +313,7 @@ NAN_METHOD(Camera::ToYUYV) {
   auto thisObj = args.This();
   auto camera = node::ObjectWrap::Unwrap<Camera>(thisObj)->camera;
   int size = camera->width * camera->height * 2;
-  auto ret  = NanNew<Array>(size);
-  for (int i = 0; i < size; i++) {
-    ret->Set(i, NanNew<Number>(camera->head.start[i]));
-  }
+  Local<Object> ret = NanNewBufferHandle((const char*) camera->head.start, size);
   NanReturnValue(ret);
 }
 
@@ -326,11 +323,7 @@ NAN_METHOD(Camera::ToRGB) {
   auto camera = node::ObjectWrap::Unwrap<Camera>(thisObj)->camera;
   auto rgb = yuyv2rgb(camera->head.start, camera->width, camera->height);
   int size = camera->width * camera->height * 3;
-  auto ret  = NanNew<Array>(size);
-  for (int i = 0; i < size; i++) {
-    ret->Set(i, NanNew<Number>(rgb[i]));
-  }
-  free(rgb);
+  Local<Object> ret = NanBufferUse((char*) rgb, size);
   NanReturnValue(ret);
 }
 
