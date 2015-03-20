@@ -1,4 +1,4 @@
-var raw = require("./build/Release/v4l2camera");
+var raw = require("../build/Release/capture");
 
 exports.Camera = function Camera() {
     var args = [null].concat([].slice.call(arguments));
