@@ -16,6 +16,9 @@ OSXCamera.prototype.captureFrame = function () {
   return out;
 }
 
+OSXCamera.prototype.close = function () {
+}
+
 function LinuxCamera () {
   var v4l2camera = require('./v4l2');
   this.cam = new v4l2camera.Camera("/dev/video0");
@@ -40,6 +43,10 @@ LinuxCamera.prototype.captureFrame = function (next) {
     });
   }.bind(this));
   return out;
+}
+
+LinuxCamera.prototype.close = function () {
+  this.cam.stop();
 }
 
 function acquire (next) {
