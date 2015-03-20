@@ -14,7 +14,9 @@ npm install camera-usb
 var cameralib = require('camera-usb');
 var fs = require('fs');
 
-cameralib.capture().pipe(fs.createWriteStream('out.jpg'));
+cameralib.acquire(function (err, camera) {
+	camera.capture('jpeg').pipe(fs.createWriteStream('out.jpg'));
+});
 ```
 
 ## License
