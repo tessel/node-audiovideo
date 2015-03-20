@@ -23,4 +23,4 @@ void InitAll(Handle<Object> exports) {
     NanNew<FunctionTemplate>(CaptureSync)->GetFunction());
 }
 
-NODE_MODULE(addon, InitAll)
+NODE_MODULE(capture, InitAll)
