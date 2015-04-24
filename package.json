@@ -1,6 +1,6 @@
 {
   "name": "audiovideo",
-  "version": "1.0.0",
+  "version": "v1.0.0",
   "description": "Take still frames or mjpeg video from a webcam.",
   "repository": "tcr/camera-usb",
   "main": "index.js",
