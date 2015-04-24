@@ -5,7 +5,7 @@ var bindings = require('bindings')('capture.node')
 function OSXCamera () {
 }
 
-OSXCamera.prototype.captureFrame = function () {
+OSXCamera.prototype.captureShot = function () {
   var out = new (require('stream').Readable);
   out._read = function () { };
   setImmediate(function () {
@@ -25,7 +25,7 @@ function LinuxCamera () {
   this.cam.start();
 }
 
-LinuxCamera.prototype.captureFrame = function (next) {
+LinuxCamera.prototype.captureShot = function (next) {
   var out = new (require('stream').Readable);
   out._read = function () { };
   this.cam.capture(function () {
@@ -49,7 +49,7 @@ LinuxCamera.prototype.close = function () {
   this.cam.stop();
 }
 
-function acquire (next) {
+function acquireCamera (next) {
   if (process.platform == 'darwin') {
     next(null, new OSXCamera());
   } else if (process.platform == 'linux') {
@@ -57,4 +57,4 @@ function acquire (next) {
   }
 }
 
-exports.acquire = acquire;
+exports.acquireCamera = acquireCamera;

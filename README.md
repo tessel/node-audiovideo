@@ -1,21 +1,21 @@
-# camera-usb
+# audiovideo
 
-Capture frames from a USB webcam.
+Cross-platform audio record/playback and video recording.
 
 Works on OS X, and Linux. Supports Tessel 2.
 
 ```
-npm install camera-usb
+npm install audiovideo
 ```
 
 ## Example
 
 ```js
-var cameralib = require('camera-usb');
+var av = require('audiovideo');
 var fs = require('fs');
 
-cameralib.acquire(function (err, camera) {
-	camera.capture('jpeg').pipe(fs.createWriteStream('out.jpg'));
+av.acquireCamera(function (err, camera) {
+	camera.captureShot('jpeg').pipe(fs.createWriteStream('out.jpg'));
 });
 ```
 
