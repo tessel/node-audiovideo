@@ -5,16 +5,26 @@
   "repository": "tcr/node-audiovideo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "node-pre-gyp install --fallback-to-build",
+    "test": "node test/test.js"
   },
   "author": "Tim Cameron Ryan <tim@technical.io>",
   "license": "MIT",
-  "devDependencies": {
-    "imagesize": "^1.0.0"
-  },
   "dependencies": {
     "bindings": "^1.2.1",
     "jpeg": "git+https://github.com/tcr/node-jpeg.git",
-    "nan": "^1.7.0"
+    "nan": "^1.7.0",
+    "node-pre-gyp": "0.5.x"
+  },
+  "bundledDependencies": ["node-pre-gyp"],
+  "devDependencies": {
+    "imagesize": "^1.0.0",
+    "aws-sdk": "~2.0.0-rc.15"
+  },
+  "binary": {
+    "module_name": "capture",
+    "module_path": "./src/binding/",
+    "host": "https://tessel-builds.s3-us-west-2.amazonaws.com",
+    "remote_path": "./pre-gyp/{name}/v{version}"
   }
 }

@@ -1,6 +1,10 @@
 var Jpeg = require('jpeg').Jpeg;
 var fs = require('fs');
-var bindings = require('bindings')('capture.node')
+
+var binary = require('node-pre-gyp');
+var path = require('path');
+var binding_path = binary.find(path.resolve(path.join(__dirname,'./package.json')));
+var binding = require(binding_path);
 
 function OSXCamera () {
 }
@@ -9,7 +13,7 @@ OSXCamera.prototype.captureShot = function () {
   var out = new (require('stream').Readable);
   out._read = function () { };
   setImmediate(function () {
-    var buf = bindings.capture();
+    var buf = binding.capture();
     out.push(buf);
     out.push(null);
   });
