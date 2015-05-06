@@ -1,6 +1,6 @@
 {
   "name": "audiovideo",
-  "version": "v1.1.0",
+  "version": "v1.1.1",
   "description": "Cross-platform audio record/playback and video recording.",
   "repository": "tcr/node-audiovideo",
   "main": "index.js",
@@ -16,7 +16,9 @@
     "nan": "^1.7.0",
     "node-pre-gyp": "0.5.x"
   },
-  "bundledDependencies": ["node-pre-gyp"],
+  "bundledDependencies": [
+    "node-pre-gyp"
+  ],
   "devDependencies": {
     "imagesize": "^1.0.0",
     "aws-sdk": "~2.0.0-rc.15"
