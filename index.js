@@ -32,19 +32,34 @@ function LinuxCamera () {
 LinuxCamera.prototype.captureShot = function (next) {
   var out = new (require('stream').Readable);
   out._read = function () { };
+
   this.cam.capture(function () {
     var width = this.cam.width;
     var height = this.cam.height;
     console.error('Result', width, height);
-    var rgb = this.cam.toRGB();
 
-    var jpeg = new Jpeg(rgb, width, height, 'rgb');
-    console.error('Encoding');
-    jpeg.encode(function (image, error) {
-      console.error('Encoded');
-      out.push(image);
+    switch (this.cam.configGet().formatName) {
+      case 'MJPG':
+        next(this.cam.toYUYV());
+        break;
+
+      case 'YUYV':
+        var rgb = this.cam.toRGB();
+        var jpeg = new Jpeg(rgb, width, height, 'rgb');
+        console.error('Encoding');
+        jpeg.encode(function (image, error) {
+          console.error('Encoded');
+        });
+        break;
+
+      default:
+        throw new Error('Invalid format: ' + this.cam.configGet().formatName);
+    }
+
+    function next (res) {
+      out.push(res);
       out.push(null);
-    });
+    }
   }.bind(this));
   return out;
 }
