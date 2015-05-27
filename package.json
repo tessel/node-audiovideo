@@ -1,6 +1,6 @@
 {
   "name": "audiovideo",
-  "version": "v1.1.1",
+  "version": "v1.1.2",
   "description": "Cross-platform audio record/playback and video recording.",
   "repository": "tcr/node-audiovideo",
   "main": "index.js",
