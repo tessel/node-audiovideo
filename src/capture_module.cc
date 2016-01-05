@@ -12,15 +12,15 @@ extern "C" char* camera_capture(size_t* size);
 
 // Simple synchronous access to the `Estimate()` function
 NAN_METHOD(CaptureSync) {
-	NanScope();
+	// NanScope();
 	size_t size = 0;
 	char* ptr = camera_capture(&size);
-	NanReturnValue(NanBufferUse(ptr, size));
+	info.GetReturnValue().Set(Nan::NewBuffer(ptr, size).ToLocalChecked());
 }
 
 void InitAll(Handle<Object> exports) {
-  exports->Set(NanNew<String>("capture"),
-    NanNew<FunctionTemplate>(CaptureSync)->GetFunction());
+  exports->Set(Nan::New("capture").ToLocalChecked(),
+    Nan::New<FunctionTemplate>(CaptureSync)->GetFunction());
 }
 
 NODE_MODULE(capture, InitAll)
