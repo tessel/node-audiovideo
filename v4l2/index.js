@@ -1,7 +1,5 @@
-var binary = require('node-pre-gyp');
+var binding = require('bindings')('capture.node');
 var path = require('path');
-var binding_path = binary.find(path.resolve(path.join(__dirname,'../package.json')));
-var binding = require(binding_path);
 
 exports.Camera = function Camera() {
     var args = [null].concat([].slice.call(arguments));

@@ -1,32 +1,22 @@
 {
   "name": "audiovideo",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Cross-platform audio record/playback and video recording.",
   "repository": "tcr/node-audiovideo",
   "main": "index.js",
   "scripts": {
-    "install": "node-pre-gyp install --fallback-to-build",
     "test": "node test/test.js"
   },
   "author": "Tim Cameron Ryan <tim@technical.io>",
   "license": "MIT",
   "dependencies": {
     "bindings": "^1.2.1",
-    "jpeg": "git+https://github.com/tcr/node-jpeg.git#tcr-nan2",
+    "libjpeg": "^3.0.0",
     "nan": "^2.0.0",
     "node-pre-gyp": "0.6.x"
   },
-  "bundledDependencies": [
-    "node-pre-gyp"
-  ],
   "devDependencies": {
     "imagesize": "^1.0.0",
     "aws-sdk": "~2.0.0-rc.15"
-  },
-  "binary": {
-    "module_name": "capture",
-    "host": "https://tessel-builds.s3-us-west-2.amazonaws.com",
-    "remote_path": "./pre-gyp/{name}/v{version}",
-    "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}-{configuration}.tar.gz"
   }
 }
