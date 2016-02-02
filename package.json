@@ -25,7 +25,6 @@
   },
   "binary": {
     "module_name": "capture",
-    "module_path": "./src/binding/",
     "host": "https://tessel-builds.s3-us-west-2.amazonaws.com",
     "remote_path": "./pre-gyp/{name}/v{version}",
     "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}-{configuration}.tar.gz"
