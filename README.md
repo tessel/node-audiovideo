@@ -1,4 +1,9 @@
-# audiovideo
+# audiovideo - DEPRECATED
+
+## Deprecation
+This module is deprecated. Please use [`tessel-av`](www.github.com/tessel/tessel-av) for audio/video functionalities with Tessel.
+
+## Description
 
 Cross-platform audio record/playback and video recording.
 
