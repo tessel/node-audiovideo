@@ -1,7 +1,7 @@
 # audiovideo - DEPRECATED
 
 ## Deprecation
-This module is deprecated. Please use [`tessel-av`](www.github.com/tessel/tessel-av) for audio/video functionalities with Tessel.
+This module is deprecated. Please use [`tessel-av`](http://www.github.com/tessel/tessel-av) for audio/video functionalities with Tessel.
 
 ## Description
 
